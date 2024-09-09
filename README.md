@@ -1,6 +1,6 @@
 # MacAppScheduler
 
-MacAppScheduler は、macOS 上でアプリケーションの起動と終了を自動的にスケジュール管理するツールです。指定した時間にアプリケーションを自動的に起動し、指定した時間に終了させることができます。
+MacAppSchedulerは、macOS上でアプリケーションの起動と終了を自動的にスケジュール管理するツールです。指定した時間にアプリケーションを自動的に起動し、指定した時間に終了させることができます。
 
 ## 機能
 
@@ -11,50 +11,63 @@ MacAppScheduler は、macOS 上でアプリケーションの起動と終了を�
 ## 必要条件
 
 - macOS 10.13 以降
-- Bash シェル
+- zsh シェル (macOSのデフォルトシェル)
 
 ## インストール方法
 
 1. このリポジトリをクローンまたはダウンロードします。
 
-```bash
-git clone https://github.com/yourusername/MacAppScheduler.git
-cd MacAppScheduler
+```zsh
+git clone git@github.com:haginot/mac-app-scheduler.git
+cd mac-app-scheduler
 ```
 
-2. インストールスクリプトを実行します。
+2. インストールスクリプトを管理者権限で実行します。
 
-```bash
-bash install_myapp.sh
+```zsh
+sudo zsh install_myapp.sh
 ```
 
 このスクリプトは必要なファイルを適切な場所にコピーし、LaunchAgent を設定します。
+管理者パスワードの入力を求められますので、ご注意ください。
 
 ## 設定
 
-アプリケーションのスケジュールを設定するには、`config.sh` ファイルを編集します。
+アプリケーションのスケジュールを設定するには、`/usr/local/etc/myapp/config.sh` ファイルを編集します。
 
-```bash
-nano /usr/local/etc/myapp/config.sh
+```zsh
+sudo nano /usr/local/etc/myapp/config.sh
 ```
 
 以下の形式でアプリケーションと時間を設定します：
 
-```bash
-declare -A app_times=(
-  ["アプリケーション名"]="開始時間 終了時間"
+```zsh
+app_times=(
+  "アプリケーション名1" "開始時間1 終了時間1"
+  "アプリケーション名2" "開始時間2 終了時間2"
 )
 ```
 
 例：
 
-```bash
-declare -A app_times=(
-  ["Mail"]="09:00 17:00"
-  ["Slack"]="10:00 18:00"
-  ["Calendar"]="08:00 16:00"
+```zsh
+app_times=(
+  "Mail" "09:00 17:00"
+  "Slack" "10:00 18:00"
+  "Calendar" "08:00 16:00"
 )
 ```
+
+## 設定ファイルの更新について
+
+インストーラーを再実行すると、設定ファイル（`/usr/local/etc/myapp/config.sh`）は新しいバージョンで上書きされます。
+ただし、更新前の設定ファイルは自動的にバックアップされます。
+
+カスタム設定を行っている場合は、更新後に再度カスタム設定を適用するか、
+バックアップから必要な設定を手動でマージしてください。
+
+バックアップファイルは以下の形式で保存されます：
+`/usr/local/etc/myapp/config.sh.YYYYMMDDHHMMSS.bak`
 
 ## 使用方法
 
@@ -64,13 +77,13 @@ declare -A app_times=(
 
 - 起動：
 
-```bash
+```zsh
 launchctl load ~/Library/LaunchAgents/com.example.myapp.plist
 ```
 
 - 停止：
 
-```bash
+```zsh
 launchctl unload ~/Library/LaunchAgents/com.example.myapp.plist
 ```
 
