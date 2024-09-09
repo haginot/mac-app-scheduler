@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # 設定ファイルを読み込む
 source /usr/local/etc/myapp/config.sh
@@ -7,11 +7,11 @@ while true; do
   CURRENT_TIME=$(date +"%H:%M")
 
   # 各アプリをループで処理
-  for APP_NAME in "${!app_times[@]}"; do
+  for APP_NAME in ${(k)app_times}; do
     # 各アプリの起動時間と終了時間を取得
-    TIMES=(${app_times[$APP_NAME]})
-    START_TIME=${TIMES[0]}
-    STOP_TIME=${TIMES[1]}
+    TIMES=(${=app_times[$APP_NAME]})
+    START_TIME=${TIMES[1]}
+    STOP_TIME=${TIMES[2]}
 
     # 現在時間と比較して、アプリを起動または終了
     if [[ "$CURRENT_TIME" > "$START_TIME" && "$CURRENT_TIME" < "$STOP_TIME" ]]; then

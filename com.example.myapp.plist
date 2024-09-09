@@ -8,7 +8,7 @@
     <!-- スクリプトのパス -->
     <key>ProgramArguments</key>
     <array>
-        <string>/usr/local/bin/my_app_manager.sh</string>
+        <string>/usr/local/bin/my-app-manager.sh</string>
     </array>
 
     <!-- ログを出力する場所（オプション） -->
