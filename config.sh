@@ -3,7 +3,7 @@
 # インストールディレクトリ
 SCRIPT_DIR="/usr/local/bin"
 PLIST_DIR="$HOME/Library/LaunchAgents"
-SCRIPT_NAME="my_app_manager.sh"
+SCRIPT_NAME="my-app-manager.sh"
 PLIST_NAME="com.example.myapp.plist"
 
 # zshでの連想配列の宣言
