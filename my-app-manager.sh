@@ -14,7 +14,9 @@ while true; do
 
     # 現在の曜日がアプリの起動曜日に含まれているかを確認
     if [[ ! " ${APP_DAYS[@]} " =~ " $CURRENT_DAY " ]]; then
-      echo "$APP_NAME は今日起動されません: $CURRENT_DAY"
+      echo "$APP_NAME は今日起動されません。もし起動していれば終了します: $CURRENT_DAY"
+      # アプリが起動している場合は終了する
+      osascript -e "tell application \"$APP_NAME\" to if running then quit"
       continue
     fi
 
