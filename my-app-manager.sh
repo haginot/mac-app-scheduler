@@ -5,9 +5,19 @@ source /usr/local/etc/myapp/config.sh
 
 while true; do
   CURRENT_TIME=$(date +"%H:%M")
+  CURRENT_DAY=$(date +"%a")  # 現在の曜日を取得 (e.g., Mon, Tue)
 
   # 各アプリをループで処理
   for APP_NAME in ${(k)app_times}; do
+    # 各アプリの起動曜日を取得
+    APP_DAYS=${=app_days[$APP_NAME]}
+
+    # 現在の曜日がアプリの起動曜日に含まれているかを確認
+    if [[ ! " ${APP_DAYS[@]} " =~ " $CURRENT_DAY " ]]; then
+      echo "$APP_NAME は今日起動されません: $CURRENT_DAY"
+      continue
+    fi
+
     # 各アプリの起動時間と終了時間を取得
     TIMES=(${=app_times[$APP_NAME]})
     START_TIME=${TIMES[1]}
