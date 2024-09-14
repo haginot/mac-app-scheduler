@@ -1,0 +1,66 @@
+# Ignore actual configuration files
+config.sh
+
+# macOS 特有のファイルを無視
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS トラッシュフォルダの一時的な項目
+.Spotlight-V100
+.Trashes
+
+# アイコンの自動生成
+Icon?
+._*
+
+# 過去のバージョンにあるフォルダ
+[Tt]humbs.db
+.DS_Store
+
+# バイナリディレクトリ
+*.lock
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# ログファイル
+*.log
+
+# コンパイル結果
+*.o
+*.so
+*.dylib
+
+# Vim バックアップファイル
+*.swp
+*.swo
+*.swn
+
+# エディタやIDE固有の設定
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node.js 用 (必要に応じて追加)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python 用 (必要に応じて追加)
+venv/
+.env
+
+# Xcode/Swift 用 (必要に応じて追加)
+*.xcworkspace
+*.xcuserdata
+*.xcuserdatad
+DerivedData/
+build/
+
+# その他のキャッシュやビルド成果物
+dist/
+tmp/
+out/
